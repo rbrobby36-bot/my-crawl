@@ -1292,7 +1292,7 @@ async function extractAllViewports(page, url) {
   }
   console.log(`Loaded ${categoryLinks.size} categories from ${LINKS_FILE}.`);
 
-  let browser = await chromium.launch({ headless: false });
+  let browser = await chromium.launch({ headless: true });
   let page = await browser.newPage({
     userAgent:
       'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
@@ -1308,7 +1308,7 @@ async function extractAllViewports(page, url) {
     } catch { /* fall through to relaunch */ }
     console.log('  [recover] browser/page unresponsive ? relaunching...');
     try { await browser.close(); } catch { /* already dead, ignore */ }
-    browser = await chromium.launch({ headless: false });
+    browser = await chromium.launch({ headless: true });
     page = await browser.newPage({
       userAgent:
         'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
